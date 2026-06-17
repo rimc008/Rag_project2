@@ -1,0 +1,5 @@
+venv/
+backend/hf_cache/
+__pycache__/
+*.pyc
+.env
