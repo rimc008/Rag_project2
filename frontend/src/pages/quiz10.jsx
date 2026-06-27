@@ -67,7 +67,7 @@ export default function Quiz10({ darkMode: externalDarkMode,quizQuestions1 }) {
               <ArrowLeft size={18} />
             </NavLink>
             <h1 className="text-xl font-bold tracking-tight">
-              RAGenius<span className={darkMode ? "text-zinc-500 font-normal" : "text-zinc-400 font-normal"}>AI</span>
+              RAGenius<span className={darkMode ? "text-red-500 font-semibold" : "text-red-400 font-bold"}>AI</span>
             </h1>
           </div>
 
