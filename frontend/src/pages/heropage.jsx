@@ -7,7 +7,7 @@ import SmartNotesView from "./smartnotes";
 
 
 
-export default function Heropage({setQuizQuestions1,documentid,setDocumentid,document,setDocument,documentname,setDocumentname,chatHistory,setChatHistory,colorset,setColorset,showsummary,setShowsummary,aisummary,setAisummary,showNotes,setShowNotes,ainotes,setAinotes}) {
+export default function Heropage({setQuizQuestions1,documentid,setDocumentid,document1,setDocument1,documentname,setDocumentname,chatHistory,setChatHistory,colorset,setColorset,showsummary,setShowsummary,aisummary,setAisummary,showNotes,setShowNotes,ainotes,setAinotes}) {
 
   const [darkMode, setDarkMode] = useState(true);
 
@@ -49,12 +49,12 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
     const handleChange1 = async() => {
 
-      if (document === null){
+      if (document1 === null){
         alert("Pdf Not Uploaded")
       }
       else{
 
-        console.log(document);
+        console.log(document1);
         
 
         try {
@@ -62,7 +62,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
           setUploading(true)  // starts spin
 
           const formData = new FormData();
-          formData.append("file", document);
+          formData.append("file", document1);
             
           const res = await fetch("http://127.0.0.1:8000/ingest",{
 
@@ -74,7 +74,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
           if (data3.success){
 
-            alert(data3.message)
+            console.log(data3.message)
             setColorset(1)
             setDocumentid(data3.document_id)
           }
@@ -109,7 +109,16 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
       handleChange1()
     }
     
-  },[document])
+  },[document1])
+
+  useEffect(() => {
+      if (showsummary && aisummary) {
+        document.getElementById("summary")?.scrollIntoView({ behavior: "smooth" })
+      }
+      if (showNotes && ainotes) {
+        document.getElementById("notes")?.scrollIntoView({ behavior: "smooth" })
+      }
+    }, [showsummary, aisummary, showNotes, ainotes])
 
   const handleSendMessage = async(e) => {
     e.preventDefault();
@@ -137,7 +146,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
       if (data4.success){
 
-        alert("getting response")
+        console.log("getting response")
         airesponse = data4.message
       }
       else{
@@ -177,7 +186,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
       if (data4.success){
 
-        alert("getting request");
+        console.log("getting request");
         console.log(data4.message);
                 
         setQuizQuestions1(data4.message)
@@ -211,7 +220,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
       if (data6.success){
 
-        alert("getting response summary")
+        console.log("getting response summary")
         console.log(data6.message);
         
         setAisummary(data6.message)
@@ -249,7 +258,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
       if (data6.success){
 
-        alert("getting response notes")
+        console.log("getting response notes")
         console.log(data6.message);
         
         setAinotes(data6.message[0])
@@ -318,8 +327,8 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
                 documentrenders.current = 1
                 let nextUpload = e.target.files[0]
                 console.log(nextUpload);              
-                setDocument(nextUpload)
-                alert("Wait untill you get the message pdf uploaded")
+                setDocument1(nextUpload)
+                console.log("Wait untill you get the message pdf uploaded");
                 setDocumentname(nextUpload.name)
                 
 
@@ -401,7 +410,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
             {/* Quick Utility Features */}
             <div className="grid grid-cols-2 gap-4">
 
-              <a href={showNotes ? "#notes" : null}>
+              
               <div className={`p-4 rounded-xl border hover:scale-95 transition-all cursor-pointer ${darkMode ? "bg-zinc-900/20 border-zinc-700" : "bg-zinc-50/30 border-zinc-500"}`} onClick={handleChange4}>
                 <div className="flex flex-row justify-between">
                   <h3 className="text-sm font-bold">Smart Notes</h3>
@@ -410,9 +419,9 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
                   ): null}
                 </div>
                 <p className={`text-xs mt-1 ${darkMode ? "text-zinc-400" : "text-zinc-700"}`}>Instantly extract clean, outlines.</p>
-              </div></a>
+              </div>
 
-              <a href={showsummary ? "#summary" : null}>
+              
               <div className={`p-4 rounded-xl border cursor-pointer hover:scale-95 transition ${darkMode ? "bg-zinc-900/20 border-zinc-700" : "bg-zinc-50/30 border-zinc-500"}`} onClick={handleChange3}>
 
                 <div className="flex flex-row justify-between">
@@ -422,7 +431,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
                   ): null}
                 </div>
                 <p className={`text-xs mt-1 ${darkMode ? "text-zinc-400" : "text-zinc-700"}`}>Condense dense sections fast.</p>
-              </div></a>
+              </div>
             </div>
           </section>
 
