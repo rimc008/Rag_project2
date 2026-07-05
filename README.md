@@ -1,12 +1,11 @@
-# 🧠 RAGenius AI
-
+## RAGenius AI 🧠
 Transform your PDFs into an intelligent AI learning workspace. Chat with documents, generate AI-powered summaries, smart notes, and quizzes using a Retrieval-Augmented Generation (RAG) pipeline built with FastAPI, React, MongoDB, and Qdrant.
 
-## 🚀 A Little Preview
+## A Little Preview 🚀
 https://github.com/user-attachments/assets/0c24d12b-b2e0-4950-b893-f3c3597c8a27
 
 
-# ✨ Features
+## Features ✨
 
 * 📄 Upload and process PDF documents.
 * 💬 Chat with PDFs using Retrieval-Augmented Generation (RAG).
@@ -22,7 +21,7 @@ https://github.com/user-attachments/assets/0c24d12b-b2e0-4950-b893-f3c3597c8a27
 * 🌙 Beautiful Dark/Light Mode interface.
 * 🔥 Clean modular project structure for easy scalability.
 
-# 📁 Folder Structure
+## Folder Structure 📁
 
 ```text
 RAG_PROJECT2/
@@ -84,9 +83,9 @@ RAG_PROJECT2/
 └── README.md
 ```
 
-# 🛠️ Tech Stack
+## Tech Stack 🛠️
 
-## 🎨 Frontend
+### Frontend 🎨
 
 - React.js
 - Vite
@@ -95,33 +94,29 @@ RAG_PROJECT2/
 - React Icons
 - Lucide React
 
-## ⚙️ Backend
+### Backend ⚙️
 
 - FastAPI
 - Python
 - Uvicorn
 
-## 🤖 AI & Machine Learning
+###  AI & Machine Learning 🤖
 
 - Retrieval-Augmented Generation (RAG)
 - Hugging Face Embeddings
 - LangChain
 - Sentence Transformers
 
-## 🗄️ Vector Database
+### Vector Database 🗄️
 
 - Qdrant
 
-## 💾 Database
-
-- MongoDB
-
-## 📄 Document Processing
+### Document Processing 📄
 
 - PyMuPDF
 - Recursive Text Splitter
 
-## 🔧 Tools
+### Tools 🔧
 
 - Docker
 - Git
@@ -129,7 +124,7 @@ RAG_PROJECT2/
 - VS Code
 - Postman
 
-# ⚡ How It Works
+## How It Works ⚡
 
 ```text
 Upload PDF
@@ -153,15 +148,15 @@ Generate AI Response
 Summary • Notes • Quiz • Chat
 ```
 
-# 🚀 Run Locally
+## Run Locally 🚀
 
-## Clone Repository
+### Clone Repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/rimc008/Rag_project2.git
 ```
 
-## Backend
+### Backend
 
 ```bash
 cd backend
@@ -176,7 +171,7 @@ pip install -r requirements.txt
 python server.py
 ```
 
-## Frontend
+### Frontend
 
 ```bash
 cd frontend
@@ -186,7 +181,7 @@ npm install
 npm run dev
 ```
 
-## Run Qdrant
+### Run Qdrant
 
 ```bash
 docker run -p 6333:6333 \
@@ -195,7 +190,7 @@ docker run -p 6333:6333 \
 qdrant/qdrant
 ```
 
-# 📌 Future Enhancements
+## Future Enhancements 📌
 
 - Multiple PDF Chat
 - Conversation History
@@ -206,7 +201,7 @@ qdrant/qdrant
 - Streaming AI Responses
 - Voice-based Querying
 
-# ⭐ Support
+## Support ⭐
 
 If you found this project useful, consider giving it a **⭐ Star** on GitHub.
 
