@@ -2,15 +2,9 @@
 
 Transform your PDFs into an intelligent AI learning workspace. Chat with documents, generate AI-powered summaries, smart notes, and quizzes using a Retrieval-Augmented Generation (RAG) pipeline built with FastAPI, React, MongoDB, and Qdrant.
 
----
-
 ## 🚀 A Little Preview
-
-```
 https://github.com/user-attachments/assets/0c24d12b-b2e0-4950-b893-f3c3597c8a27
-```
 
----
 
 # ✨ Features
 
@@ -27,8 +21,6 @@ https://github.com/user-attachments/assets/0c24d12b-b2e0-4950-b893-f3c3597c8a27
 * 🎨 Modern responsive React frontend.
 * 🌙 Beautiful Dark/Light Mode interface.
 * 🔥 Clean modular project structure for easy scalability.
-
----
 
 # 📁 Folder Structure
 
@@ -92,8 +84,6 @@ RAG_PROJECT2/
 └── README.md
 ```
 
----
-
 # 🛠️ Tech Stack
 
 ## 🎨 Frontend
@@ -105,15 +95,11 @@ RAG_PROJECT2/
 - React Icons
 - Lucide React
 
----
-
 ## ⚙️ Backend
 
 - FastAPI
 - Python
 - Uvicorn
-
----
 
 ## 🤖 AI & Machine Learning
 
@@ -122,26 +108,18 @@ RAG_PROJECT2/
 - LangChain
 - Sentence Transformers
 
----
-
 ## 🗄️ Vector Database
 
 - Qdrant
-
----
 
 ## 💾 Database
 
 - MongoDB
 
----
-
 ## 📄 Document Processing
 
 - PyMuPDF
 - Recursive Text Splitter
-
----
 
 ## 🔧 Tools
 
@@ -150,8 +128,6 @@ RAG_PROJECT2/
 - GitHub
 - VS Code
 - Postman
-
----
 
 # ⚡ How It Works
 
@@ -177,8 +153,6 @@ Generate AI Response
 Summary • Notes • Quiz • Chat
 ```
 
----
-
 # 🚀 Run Locally
 
 ## Clone Repository
@@ -186,8 +160,6 @@ Summary • Notes • Quiz • Chat
 ```bash
 git clone <your-repository-url>
 ```
-
----
 
 ## Backend
 
@@ -204,8 +176,6 @@ pip install -r requirements.txt
 python server.py
 ```
 
----
-
 ## Frontend
 
 ```bash
@@ -216,8 +186,6 @@ npm install
 npm run dev
 ```
 
----
-
 ## Run Qdrant
 
 ```bash
@@ -226,8 +194,6 @@ docker run -p 6333:6333 \
 --name qdrant \
 qdrant/qdrant
 ```
-
----
 
 # 📌 Future Enhancements
 
@@ -239,8 +205,6 @@ qdrant/qdrant
 - Cloud Deployment
 - Streaming AI Responses
 - Voice-based Querying
-
----
 
 # ⭐ Support
 
