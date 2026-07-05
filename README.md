@@ -155,7 +155,10 @@ Summary • Notes • Quiz • Chat
 ```bash
 git clone https://github.com/rimc008/Rag_project2.git
 ```
-
+### rag_project2
+```bash
+venv\Scripts\activate
+```
 ### Backend
 
 ```bash
@@ -163,12 +166,7 @@ cd backend
 
 python -m venv venv
 
-# Windows
-venv\Scripts\activate
-
-pip install -r requirements.txt
-
-python server.py
+uvicorn server:app --reload
 ```
 
 ### Frontend
@@ -201,7 +199,7 @@ qdrant/qdrant
 - Streaming AI Responses
 - Voice-based Querying
 
-## Support ⭐
+## Liked it ⭐
 
 If you found this project useful, consider giving it a **⭐ Star** on GitHub.
 
