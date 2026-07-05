@@ -27,15 +27,16 @@ const App = () => {
   const [aisummary,setAisummary] = useState([])
   const [showNotes,setShowNotes] = useState(false)
   const [ainotes,setAinotes] = useState([])
+  const [quizloading,setQuizloading] = useState(false)
 
   return (
     <div>
       <Routes>
-        <Route path="/" element={< Heropage setQuizQuestions1={setQuizQuestions1} documentid={documentid} setDocumentid={setDocumentid} document1={document1} setDocument1={setDocument1} documentname={documentname} setDocumentname={setDocumentname} chatHistory={chatHistory} setChatHistory={setChatHistory} colorset={colorset} setColorset={setColorset} showsummary={showsummary} setShowsummary={setShowsummary} aisummary={aisummary} setAisummary={setAisummary} showNotes={showNotes} setShowNotes={setShowNotes} ainotes={ainotes} setAinotes={setAinotes}/>}/>
+        <Route path="/" element={< Heropage setQuizQuestions1={setQuizQuestions1} documentid={documentid} setDocumentid={setDocumentid} document1={document1} setDocument1={setDocument1} documentname={documentname} setDocumentname={setDocumentname} chatHistory={chatHistory} setChatHistory={setChatHistory} colorset={colorset} setColorset={setColorset} showsummary={showsummary} setShowsummary={setShowsummary} aisummary={aisummary} setAisummary={setAisummary} showNotes={showNotes} setShowNotes={setShowNotes} ainotes={ainotes} setAinotes={setAinotes} setQuizloading={setQuizloading}/>}/>
 
-        <Route path="/quiz10" element={< Quiz10 quizQuestions1={quizQuestions1}/>}/>
-        <Route path="/quiz15" element={< Quiz15 quizQuestions1={quizQuestions1}/>}/>
-        <Route path="/quiz20" element={< Quiz20 quizQuestions1={quizQuestions1}/>}/>
+        <Route path="/quiz10" element={< Quiz10 quizQuestions1={quizQuestions1} quizloading={quizloading}/>}/>
+        <Route path="/quiz15" element={< Quiz15 quizQuestions1={quizQuestions1} quizloading={quizloading}/>}/>
+        <Route path="/quiz20" element={< Quiz20 quizQuestions1={quizQuestions1} quizloading={quizloading}/>}/>
         <Route path="/aiview" element={<AiSummaryView showsummary={showsummary} setShowsummary={setShowsummary} aisummary={aisummary}/>}/>
         <Route path="/notes" element={< SmartNotesView ainotes={ainotes}/>}/>
         

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon, ArrowLeft, CheckCircle2, XCircle, RefreshCw, Layers } from "lucide-react";
 
-export default function Quiz20({ darkMode: externalDarkMode,quizQuestions1 }) {
+export default function Quiz20({ darkMode: externalDarkMode,quizQuestions1,quizloading}) {
   const [localDarkMode, setLocalDarkMode] = useState(true);
   const darkMode = externalDarkMode !== undefined ? externalDarkMode : localDarkMode;
 

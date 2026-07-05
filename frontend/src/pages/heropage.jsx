@@ -4,10 +4,13 @@ import { Sun, Moon, Send, UploadCloud, FileText } from "lucide-react"; // Note: 
 import { NavLink } from 'react-router-dom'
 import AiSummaryView from "./aisummaryview";
 import SmartNotesView from "./smartnotes";
+import Features from "./features";
+import HowItWorks from "./howworks";
+import WhatYouGet from "./youget";
+import DynamicAlert from "./dynamicalert";
 
 
-
-export default function Heropage({setQuizQuestions1,documentid,setDocumentid,document1,setDocument1,documentname,setDocumentname,chatHistory,setChatHistory,colorset,setColorset,showsummary,setShowsummary,aisummary,setAisummary,showNotes,setShowNotes,ainotes,setAinotes}) {
+export default function Heropage({setQuizQuestions1,documentid,setDocumentid,document1,setDocument1,documentname,setDocumentname,chatHistory,setChatHistory,colorset,setColorset,showsummary,setShowsummary,aisummary,setAisummary,showNotes,setShowNotes,ainotes,setAinotes,setQuizloading}) {
 
   const [darkMode, setDarkMode] = useState(true);
 
@@ -29,6 +32,21 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
   const [uploading2, setUploading2] = useState(false)
 
+  const [uploading3, setUploading3] = useState(false)
+
+  const [alertConfig, setAlertConfig] = useState({
+    isVisible: false,
+    message: "",
+    type: "info", // "success", "error", or "info"
+  });
+
+  const triggerAlert = (message, type = "info") => {
+    setAlertConfig({ isVisible: true, message, type });
+  };
+
+  const closeAlert = () => {
+    setAlertConfig((prev) => ({ ...prev, isVisible: false }));
+  };
 
   useEffect(() => {
 
@@ -50,7 +68,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
     const handleChange1 = async() => {
 
       if (document1 === null){
-        alert("Pdf Not Uploaded")
+        triggerAlert("Pdf Not Uploaded","error")
       }
       else{
 
@@ -74,12 +92,14 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
           if (data3.success){
 
-            console.log(data3.message)
+            triggerAlert(data3.message,"success")
             setColorset(1)
             setDocumentid(data3.document_id)
           }
           else {
-            alert(data3.message)
+
+            triggerAlert("File has not been uploaded","error")
+            console.log(data3.message)
           }
         } 
         
@@ -132,6 +152,8 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
 
     try {
 
+      setUploading3(true)  // starts pulse
+
       const res = await fetch("http://127.0.0.1:8000/question",{
         method:"POST",
         headers : {
@@ -150,12 +172,16 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
         airesponse = data4.message
       }
       else{
-        alert(data4.message)
+        triggerAlert(data4.message,"error")
       }
 
     } catch (error) {
       console.log(error.message);
       
+    }
+
+    finally {
+      setUploading3(false)  // stop pulse
     }
 
     // Simulate AI response response
@@ -172,6 +198,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
   const handleChange2 = async() => {
 
     try {
+      setQuizloading(true)
 
       const res = await fetch("http://127.0.0.1:8000/quiz",{
         method:"POST",
@@ -198,6 +225,9 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
     } catch (error) {
       console.log(error.message);
             
+    }
+    finally{
+      setQuizloading(false)
     }
   }
 
@@ -280,6 +310,16 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
   return (
 
     <div>
+
+      {/* 4. Mount the alert at the very top of your app wrapper */}
+      <DynamicAlert 
+        isVisible={alertConfig.isVisible}
+        message={alertConfig.message}
+        type={alertConfig.type}
+        onClose={closeAlert}
+        darkMode={darkMode}
+      />
+
       <div className={`min-h-screen font-Prata antialiased transition-colors duration-300 ${
         darkMode 
           ? "bg-zinc-950 text-zinc-50 selection:bg-zinc-800" 
@@ -448,25 +488,40 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
             </div>
 
             {/* Message Stream */}
-            <div ref={messageref} className="flex-1 p-4 space-y-4 overflow-y-auto text-sm max-h-[320px]">
-              {chatHistory.map((msg, i) => (
-                <div 
-                  key={i} 
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`max-w-[85%] rounded-2xl px-4 py-3 leading-relaxed ${
-                    msg.role === 'user'
-                      ? darkMode
-                        ? "bg-zinc-100 text-zinc-950 font-medium"
-                        : "bg-zinc-950 text-white font-medium"
-                      : darkMode
-                        ? "bg-zinc-900 text-zinc-300 border border-zinc-800"
-                        : "bg-white text-zinc-800 border border-zinc-200"
-                  }`}>
-                    {msg.text}
-                  </div>
+            <div ref={messageref} className="flex flex-col p-4 space-y-4 overflow-y-auto text-sm min-h-[320px]">
+
+              <div>
+                {chatHistory.map((msg, i) => (
+                  
+                    <div 
+                      key={i} 
+                      className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} pb-3`}
+                    >
+                      <div className={`max-w-[85%] rounded-2xl px-4 py-3 leading-relaxed ${
+                        msg.role === 'user'
+                          ? darkMode
+                            ? "bg-zinc-100 text-zinc-950 font-medium"
+                            : "bg-zinc-950 text-white font-medium"
+                          : darkMode
+                            ? "bg-zinc-900 text-zinc-300 border border-zinc-800"
+                            : "bg-white text-zinc-800 border border-zinc-200"
+                      }`}>
+                        {msg.text}
+                      </div>
+                    </div>
+                  
+                ))}
+
+                {/* ypu can't place this inside map as map is rendering the list*/}
+                <div>
+                    {(uploading3) ? (
+                      <div className="animate-pulse ease-in-out">
+                        <div className="w-7 h-7 rounded-full bg-[radial-gradient(circle,_white,_transparent,_rgba(24,24,27,0.3))]"/>
+                      </div>
+                    ) : null}                    
                 </div>
-              ))}
+
+              </div>
             </div>
 
             {/* User Input Form Field Section */}
@@ -512,6 +567,17 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
       <div id="notes">
         {showNotes && ainotes && <SmartNotesView darkMode={darkMode} setDarkMode={setDarkMode} setShowNotes={setShowNotes} ainotes={ainotes}/>}
       </div>
+      <div>
+        <WhatYouGet darkMode={darkMode}/>
+      </div>
+      <div className="border-b border-zinc-900">
+        <HowItWorks darkMode={darkMode}/>
+      </div>
+      
+      <div>
+        <Features darkMode={darkMode}/>
+      </div>
+      
     </div>
   );
 }

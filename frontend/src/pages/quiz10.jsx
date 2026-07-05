@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon, ArrowLeft, CheckCircle2, XCircle, RefreshCw, Layers } from "lucide-react";
 
-export default function Quiz10({ darkMode: externalDarkMode,quizQuestions1 }) {
+export default function Quiz10({ darkMode: externalDarkMode,quizQuestions1,quizloading}) {
   const [localDarkMode, setLocalDarkMode] = useState(true);
   const darkMode = externalDarkMode !== undefined ? externalDarkMode : localDarkMode;
 
@@ -98,6 +98,13 @@ export default function Quiz10({ darkMode: externalDarkMode,quizQuestions1 }) {
           />
         </div>
       </div>
+
+      {quizloading ? (<div className="flex flex-col items-center justify-center gap-3 mt-20">
+
+        <h2 className="animate-bounce">fetching</h2>
+        <div className="w-10 h-10 border-4 border-zinc-700 border-t-white rounded-full animate-spin" />
+        
+      </div>) : null}
 
       {/* Workspace Area Layout */}
       <main className="max-w-6xl mx-auto mt-12 px-6 pb-24">
