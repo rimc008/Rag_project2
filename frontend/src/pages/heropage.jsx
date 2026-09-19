@@ -488,7 +488,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
             </div>
 
             {/* Message Stream */}
-            <div ref={messageref} className="flex flex-col p-4 space-y-4 overflow-y-auto text-sm min-h-[320px]">
+            <div ref={messageref} className="flex-1 p-4 space-y-4 overflow-y-auto text-sm max-h-[320px]">
 
               <div>
                 {chatHistory.map((msg, i) => (
