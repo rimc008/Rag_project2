@@ -26,6 +26,7 @@ def generate_answer1(question,data1):
         model="openai/gpt-oss-120b",
         messages=[
             {
+                
                 "role": "user",
                 "content": prompt
             }
