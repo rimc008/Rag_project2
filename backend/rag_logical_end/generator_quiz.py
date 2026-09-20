@@ -23,7 +23,7 @@ def generate_answer1(question,data1):
                 """
 
     response = genai.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[
             {
                 "role": "user",
