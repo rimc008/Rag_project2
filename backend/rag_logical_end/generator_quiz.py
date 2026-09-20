@@ -25,9 +25,7 @@ def generate_answer1(question,data1):
     response = genai.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[
-            {
-
-                
+            {                
                 "role": "user",
                 "content": prompt
             }
