@@ -3,6 +3,7 @@ from vector_db import client,embeddings,collection_name
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 
+
 vector_store = None
 retriver = None
 
