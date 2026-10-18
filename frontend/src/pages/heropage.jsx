@@ -8,6 +8,7 @@ import Features from "./features";
 import HowItWorks from "./howworks";
 import WhatYouGet from "./youget";
 import DynamicAlert from "./dynamicalert";
+import ReactMarkdown from "react-markdown";
 
 
 export default function Heropage({setQuizQuestions1,documentid,setDocumentid,document1,setDocument1,documentname,setDocumentname,chatHistory,setChatHistory,colorset,setColorset,showsummary,setShowsummary,aisummary,setAisummary,showNotes,setShowNotes,ainotes,setAinotes,setQuizloading}) {
@@ -506,7 +507,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
                             ? "bg-zinc-900 text-zinc-300 border border-zinc-800"
                             : "bg-white text-zinc-800 border border-zinc-200"
                       }`}>
-                        {msg.text}
+                        <ReactMarkdown>{msg.text}</ReactMarkdown>
                       </div>
                     </div>
                   
