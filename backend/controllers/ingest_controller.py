@@ -16,7 +16,7 @@ async def upload(file: UploadFile):
 
         os.unlink(tmp_path)  # delete temp file after ingestion
 
-        return {"success": True, "document_id":data2[1] ,"message": "Pdf Uploaded"}
+        return {"success": True, "document_id":data2[1] , "chunks":data2[2], "message": "Pdf Uploaded"}
 
     except Exception as e:
         return {"success": False, "message": str(e)}

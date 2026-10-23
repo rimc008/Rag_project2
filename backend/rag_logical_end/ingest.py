@@ -53,4 +53,4 @@ def ingest_pdf(new_pdf):
             )
 
 
-    return [vector_store,document_id]
+    return [vector_store,document_id,chunks]

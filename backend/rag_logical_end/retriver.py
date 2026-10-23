@@ -3,8 +3,10 @@ from langchain_qdrant import QdrantVectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 from langchain_cohere import CohereRerank
 from langchain_classic.retrievers import (
-    ContextualCompressionRetriever
+    ContextualCompressionRetriever,EnsembleRetriever
 )
+from langchain_community.retrievers import BM25Retriever
+
 import os
 from dotenv import load_dotenv
 
