@@ -11,7 +11,7 @@ import DynamicAlert from "./dynamicalert";
 import ReactMarkdown from "react-markdown";
 
 
-export default function Heropage({setQuizQuestions1,documentid,setDocumentid,document1,setDocument1,documentname,setDocumentname,chatHistory,setChatHistory,colorset,setColorset,showsummary,setShowsummary,aisummary,setAisummary,showNotes,setShowNotes,ainotes,setAinotes,setQuizloading}) {
+export default function Heropage({setQuizQuestions1,documentid,setDocumentid,chunks_,setChunks_,document1,setDocument1,documentname,setDocumentname,chatHistory,setChatHistory,colorset,setColorset,showsummary,setShowsummary,aisummary,setAisummary,showNotes,setShowNotes,ainotes,setAinotes,setQuizloading}) {
 
   const [darkMode, setDarkMode] = useState(true);
 
@@ -96,6 +96,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
             triggerAlert(data3.message,"success")
             setColorset(1)
             setDocumentid(data3.document_id)
+            setChunks_(data3.chunks)
           }
           else {
 
@@ -161,7 +162,7 @@ export default function Heropage({setQuizQuestions1,documentid,setDocumentid,doc
           "Content-Type":"application/json"
         },
 
-        body : JSON.stringify({"question":chatInput,"document_id":documentid})
+        body : JSON.stringify({"question":chatInput,"document_id":documentid,"chunks":chunks_})
 
       })
 

@@ -17,6 +17,7 @@ const App = () => {
 
   const [quizQuestions1,setQuizQuestions1] = useState([])
   const [documentid,setDocumentid] = useState("")
+  const [chunks_,setChunks_] = useState([])
   const [document1,setDocument1] = useState(null)
   const [documentname,setDocumentname] = useState("")
   const [chatHistory, setChatHistory] = useState([
@@ -32,7 +33,7 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={< Heropage setQuizQuestions1={setQuizQuestions1} documentid={documentid} setDocumentid={setDocumentid} document1={document1} setDocument1={setDocument1} documentname={documentname} setDocumentname={setDocumentname} chatHistory={chatHistory} setChatHistory={setChatHistory} colorset={colorset} setColorset={setColorset} showsummary={showsummary} setShowsummary={setShowsummary} aisummary={aisummary} setAisummary={setAisummary} showNotes={showNotes} setShowNotes={setShowNotes} ainotes={ainotes} setAinotes={setAinotes} setQuizloading={setQuizloading}/>}/>
+        <Route path="/" element={< Heropage setQuizQuestions1={setQuizQuestions1} documentid={documentid} setDocumentid={setDocumentid} chunks_={chunks_}  setChunks_={setChunks_} document1={document1} setDocument1={setDocument1} documentname={documentname} setDocumentname={setDocumentname} chatHistory={chatHistory} setChatHistory={setChatHistory} colorset={colorset} setColorset={setColorset} showsummary={showsummary} setShowsummary={setShowsummary} aisummary={aisummary} setAisummary={setAisummary} showNotes={showNotes} setShowNotes={setShowNotes} ainotes={ainotes} setAinotes={setAinotes} setQuizloading={setQuizloading}/>}/>
 
         <Route path="/quiz10" element={< Quiz10 quizQuestions1={quizQuestions1} quizloading={quizloading}/>}/>
         <Route path="/quiz15" element={< Quiz15 quizQuestions1={quizQuestions1} quizloading={quizloading}/>}/>

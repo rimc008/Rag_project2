@@ -1,10 +1,10 @@
 from rag_logical_end.retriver import retrieve
 from rag_logical_end.generator import generate_answer
 
-def query_upload(question:str,document_id:str):
+def query_upload(question:str,document_id:str,chunks:list):
 
     try:
-        data = retrieve(question,document_id)
+        data = retrieve(question,document_id,chunks)
 
         if (document_id==""):
             return {"success":False,"message":"Upload Pdf First"}
