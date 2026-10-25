@@ -27,12 +27,16 @@ def retrieve_answer(query,document_id,all_chunks):
         )
 
         all_chunks = [
-                Document(
-                    page_content=chunk["page_content"],
-                    metadata=chunk.get("metadata", {})
-                )
-                if isinstance(chunk, dict) else chunk
-                for chunk in all_chunks
+            Document(
+                page_content=chunk["page_content"],
+                metadata=chunk.get("metadata", {})
+            ) if isinstance(chunk, dict) else chunk
+            for chunk in all_chunks
+            if (
+                chunk.get("metadata", {}).get("document_id") == document_id
+                if isinstance(chunk, dict)
+                else chunk.metadata.get("document_id") == document_id
+            )
         ]
 
         # Keyword search
@@ -73,3 +77,4 @@ def retrieve_answer(query,document_id,all_chunks):
 def retrieve(query: str,document_id:str,chunks:list):
     
     return retrieve_answer(query,document_id,chunks)
+
