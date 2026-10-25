@@ -41,10 +41,10 @@ def retrieve_answer(query,document_id,all_chunks):
 
         # Keyword search
         bm25_retriever = BM25Retriever.from_documents(all_chunks)
-        bm25_retriever.k = 6
+        bm25_retriever.k = 8
 
         # Wraps vector_store in a "retriever" interface — a standard LangChain object whose job is: take a text query, return the top k (here, 5) most similar documents. search_kwargs={"k": 5} configures how many results to return.
-        retriever = vector_store.as_retriever(search_kwargs={"k": 6,"filter": Filter(
+        retriever = vector_store.as_retriever(search_kwargs={"k": 8,"filter": Filter(
             must=[FieldCondition(key="metadata.document_id", match=MatchValue(value=document_id))]
         )})
 
