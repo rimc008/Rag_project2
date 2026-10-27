@@ -2,7 +2,11 @@
 from vector_db import client,embeddings,collection_name
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client.models import Filter, FieldCondition, MatchValue
-
+from langchain_cohere import CohereRerank
+from langchain_classic.retrievers import (
+    ContextualCompressionRetriever,EnsembleRetriever
+)
+import os
 
 vector_store = None
 retriver = None
@@ -39,7 +43,20 @@ def retrieve_summary_number(query,document_id):
         retriver = vector_store.as_retriever(search_kwargs={"k": forward_chunks,"filter": Filter(
             must=[FieldCondition(key="metadata.document_id", match=MatchValue(value=document_id))]
         )})
-        return retriver.invoke(query)
+
+        reranker = CohereRerank(
+            model="rerank-v3.5",
+            top_n=3,
+            cohere_api_key=os.environ["COHERE_KEY"]
+            )
+    
+        retriever_ = ContextualCompressionRetriever(
+            base_compressor = reranker,
+            base_retriever= retriver
+        )
+
+        return retriever_.invoke(query)
+    
     
     else:
         raise Exception("Collection does not exist")
